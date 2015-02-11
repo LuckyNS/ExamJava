@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class GandalfStash {
+
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		Scanner scn = new Scanner(System.in);
+
+		int firstMode = scn.nextInt();
+		scn.nextLine();
+		String[] food = scn.nextLine().toLowerCase().split("[^a-z]+");
+		String mood = null;
+		int result = 0;
+		int finalResult = 0;
+
+		for (int i = 0; i < food.length; i++) {
+			if (food[i].equals("cram")) {
+				result += 2;
+			}
+			if (food[i].equals("lembas")) {
+				result += 3;
+			}
+			if (food[i].equals("apple")) {
+				result += 1;
+			}
+			if (food[i].equals("melon")) {
+				result += 1;
+			}
+			if (food[i].equals("honeycake")) {
+				result += 5;
+			}
+			if (food[i].equals("mushrooms")) {
+				result += -10;
+			} else if (!food[i].equals("cram") && !food[i].equals("lembas")
+					&& !food[i].equals("apple") && !food[i].equals("melon")
+					&& !food[i].equals("honeycake")
+					&& !food[i].equals("mushrooms")) {
+				result += -1;
+			}
+		}
+		finalResult = firstMode + result;
+		if (finalResult < -5) {
+			mood = "Angry";
+		}
+		if (finalResult >= -5 && finalResult < 0) {
+			mood = "Sad";
+		}
+		if (finalResult >= 0 && finalResult < 15) {
+			mood = "Happy";
+		}
+		if (finalResult >= 15) {
+			mood = "Special JavaScript mood";
+		}
+		System.out.println(finalResult + "\n" + mood);
+	}
+
+}
